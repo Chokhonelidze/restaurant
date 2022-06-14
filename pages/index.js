@@ -1,12 +1,5 @@
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+
 import { useState } from "react";
-import {
-  ApolloProvider,
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-} from "@apollo/client";
 import Restaurant from "./restaurants/index";
 import { InputGroup, InputGroupAddon,Input } from "reactstrap";
 
@@ -24,7 +17,9 @@ export default function Home() {
         </InputGroup>
         <br></br>
       </div>
+      <div className="body">
       <Restaurant search={search} />
+      </div>
     </>
   );
 }

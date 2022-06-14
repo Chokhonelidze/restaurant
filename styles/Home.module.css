@@ -1,6 +1,10 @@
 .container {
   padding: 0 2rem;
 }
+.body {
+  display: flex;
+  flex-flow: wrap;
+}
 
 .main {
   min-height: 100vh;

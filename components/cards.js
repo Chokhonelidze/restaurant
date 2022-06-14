@@ -1,8 +1,7 @@
 import React from "react";
-export function RestaurantCard(...props) {
-    props = props[0];
+export function RestaurantCard(props) {
   return (
-    <>
+   
       <div className="card" style={{ width: "18rem" }}>
         <img className="card-img-top" src={props.image} alt="Card image cap" />
         <div className="card-header">{props.name}</div>
@@ -10,7 +9,21 @@ export function RestaurantCard(...props) {
           <p className="card-text">{props.description}</p>
         </div>
       </div>
-    </>
+   
+  );
+}
+export function DishCard(props) {
+  return (
+
+      <div className="card" style={{ width: "10rem" }}>
+        <img className="card-img-left" src={props.image} alt="Card image cap" />
+        <div className="card-header">{props.name}</div>
+        <div className="card-body">
+          <p className="card-text">{props.description}</p>
+          {props.price?<p className="card-text price">{props.price}</p>:''}
+        </div>
+      </div>
+  
   );
 }
 export function Card(props) {

@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import Head from "next/head";
 import AppContext from "../components/context";
-import Home from "./index"
 import Layout from "../components/layout"
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo/apolloClient";
+import "../styles/globals.css";
 
 
 function MyApp(props){
