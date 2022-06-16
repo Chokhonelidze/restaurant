@@ -1,5 +1,4 @@
 import React from "react";
-import { UserContext } from "./index";
 import {Card} from "../components/cards";
 import AppContext from "../components/context";
 
@@ -14,7 +13,7 @@ console.log(process.env)
 
 var API = process.env.API ? process.env.API : "/api";
 function Login(){
-    const {user,setUser} = React.useContext(AppContext);
+    const {user,setUser,isAuthenticated} = React.useContext(AppContext);
     const [name,SetName] = React.useState();
     const [password,setPassword] = React.useState();
     const [error,setError] = React.useState();
@@ -42,7 +41,9 @@ function Login(){
             .then(
               (result) => {
                 if (result && result.accessToken != '') {
-                  setUser({user:{name,password},key:{result}});
+                  setUser({user:{name},key:{result}});
+                  console.log(user);
+                  //window.location.href="/"
                 }
                 else{
                     setError('Wrong User Or Password!');

@@ -42,7 +42,7 @@ const {user} = useContext(AppContext);
           </NavItem>
           <NavItem className="ml-auto">
             {user ? (
-              <h5>{user.username}</h5>
+              <h5>{user.name}</h5>
             ) : (
               <Link href="/register">
                 <a className="nav-link"> Sign up</a>

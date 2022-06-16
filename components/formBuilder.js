@@ -16,8 +16,13 @@ export function FormBuilder(props){
     if(!props)return(<></>);
     let inputs = Object.keys(props).map((item,index)=>{
         let settings = formSettings[item];
-        let type = settings.type.toLowerCase();
-        if(settings && settings.type && (settings.type ==='text'||settings.type === 'url' || settings.type ==='number'))
+        let type = settings.type?settings.type.toLowerCase():'text';
+        if(settings && settings.type && (settings.type ==='text'||
+                                        settings.type === 'url' || 
+                                        settings.type ==='number' ||
+                                        settings.type ==='checkbox' ||
+                                        settings.type === 'password'||
+                                        settings.type === 'email'))
         return <FormGroup key={"form"+index}><Input
         type={type} 
         value={props[item][0]} 
@@ -40,7 +45,12 @@ export function FormBuilder(props){
                 e.target.setAttribute("valid","true");
 
             }
-            props[item][1](e.target.value);
+            if(type === 'checkbox'){
+              props[item][1](e.target.checked?true:false);
+            }
+            else{
+              props[item][1](e.target.value);
+            }
             e.preventDefault();
           }}
         />

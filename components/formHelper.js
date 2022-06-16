@@ -46,4 +46,29 @@ export const formSettings = {
     placeholder: "Price"
   },
   "Add Dish To Restaurant": { type: "button" },
+  "Name":{
+    min:4,
+    type:"text",
+    label: "Enter your name",
+    placeholder:"Name"
+  },
+  "Password":{
+    min: 8,
+    type:"password",
+    label:"Enter your password",
+    placeholder:"Password"
+  },
+  "Email":{
+    min:6,
+    type:"email",
+    label:"Enter your Email address",
+    placeholder:"Email"
+  },
+  "Is Admin":{
+    type:"checkbox",
+    label:"Is User Admin"
+  },
+  "Create User":{
+    type: "button"
+  }
 };

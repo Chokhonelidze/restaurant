@@ -4,7 +4,7 @@ import {FormBuilder} from "../../components/formBuilder";
 import Dish from "../../components/dish";
 export default function createRestaurant() {
   const [name, setName] = React.useState("");
-  const [description, setDiscription] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [image, setImage] = React.useState("");
   const [dishes, setDishes] = React.useState([]);
   const [addDish,setAddDish] = React.useState(false);
@@ -44,7 +44,7 @@ export default function createRestaurant() {
   }
   let formBuilderData = {
     "Restaurant Name":[name,setName],
-    "Restaurant Description":[description,setDiscription],
+    "Restaurant Description":[description,setDescription],
     "Image":[image,setImage],
     "Create Restaurant":['',submit]
   }
