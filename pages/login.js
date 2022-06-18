@@ -2,6 +2,7 @@ import React from "react";
 import {Card} from "../components/cards";
 import AppContext from "../components/context";
 
+
 var server = process.env.REACT_APP_SERVER
 ? process.env.REACT_APP_SERVER
 : "http://localhost:3000";
@@ -13,7 +14,7 @@ console.log(process.env)
 
 var API = process.env.API ? process.env.API : "/api";
 function Login(){
-    const {user,setUser,isAuthenticated} = React.useContext(AppContext);
+    const appContext = React.useContext(AppContext);
     const [name,SetName] = React.useState();
     const [password,setPassword] = React.useState();
     const [error,setError] = React.useState();
@@ -41,8 +42,8 @@ function Login(){
             .then(
               (result) => {
                 if (result && result.accessToken != '') {
-                  setUser({user:{name},key:{result}});
-                  console.log(user);
+                  appContext.setUser({user:{name},key:{result}});
+                  console.log(appContext.user);
                   //window.location.href="/"
                 }
                 else{
@@ -71,17 +72,17 @@ function Login(){
             "Origin, X-Requested-With, Content-Type, Accept",
         },
         body: JSON.stringify({
-          "token":user.key.result.accessToken
+          "token":appContext.user.key.result.accessToken
         }),
-      }).then(setUser(null));
+      }).then(appContext.setUser(null));
     }
     return (
         <Card 
         txtcolor="black"
         header="Login"
-        body = {user ? (
+        body = {appContext.user ? (
           <>
-            <h5 className="text-success">Welcome {user.user.name}</h5>
+            <h5 className="text-success">Welcome {appContext.user.user.name}</h5>
             <button type='subbmit' className="btn btn-primary"  onClick={logout}>logout</button>     
           </>
             
