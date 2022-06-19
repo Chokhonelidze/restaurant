@@ -48,15 +48,19 @@ export default function Restaurant() {
    
       {edit ? (
         <>
-        <Form {...restaurant} />
-        <ExistingCards {...restaurant} />
+        <Form {...restaurant}  edit={setEdit}  />
+        <div className='body'>
+        <ExistingCards {...restaurant}  />
+        </div>
         </>
       ) : (
         <div>
           <h1>{restaurant.name}</h1>
           <img className="bigImg" src={restaurant.image} />
           <h2>{restaurant.description}</h2>
+          <div className='body'>
           <ExistingCards {...restaurant} />
+          </div>
         </div>
       )}
     </>
@@ -64,7 +68,6 @@ export default function Restaurant() {
 }
 
 function Form(props) {
-
   const [name, setName] = React.useState(props.name);
   const [description, setDescription] = React.useState(props.description);
   const [image, setImage] = React.useState(props.image);
@@ -96,7 +99,10 @@ function Form(props) {
       }
     });
     
-    console.log(response);
+    if(response) {
+      setAddDish(false);
+      props.edit(false);
+    }
 
   };
   let formBuilderData = {

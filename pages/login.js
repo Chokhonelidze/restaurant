@@ -39,7 +39,6 @@ function Login(){
               (result) => {
                 if (result && result.accessToken != '') {
                   setUser({email:email,role:result.role,key:{result}});
-                  console.log(user);
                   //window.location.href="/"
                 }
                 else{

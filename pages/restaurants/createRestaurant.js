@@ -5,7 +5,6 @@ import Dish from "../../components/dish";
 import {userContext} from "../../components/context";
 export default function createRestaurant() {
   const [user,setUser] = React.useContext(userContext);
-  console.log("user = "+user);
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [image, setImage] = React.useState("");
@@ -41,7 +40,6 @@ export default function createRestaurant() {
         },
       },
     });
-    console.log(response);
     if (response.data.createRestaurant) {
     }
   }

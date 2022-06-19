@@ -9,7 +9,6 @@ import {userContext} from "./context";
 const Layout = (props) => {
 const title = "Welcome to Nextjs";
 const [user,setUser] = useContext(userContext);
-console.log(user);
   return (
     <div>
       <Head>

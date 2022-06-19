@@ -25,7 +25,6 @@ export default function DishSelector(props) {
     if (error) return <p>ERROR</p>;
     if (!data) return <p>Not found</p>;
     const dishAdd = (val)=>{
-      console.log(props.dishes);
       props.setDishes([...props.dishes,val]);
     }
     return data.getDish.map((item, index) => {

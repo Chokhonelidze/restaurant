@@ -12,7 +12,6 @@ import {
   import {formSettings} from "./formHelper";
 
 export function FormBuilder(props){
-  console.log(props);
 
       const [errors,setErrors] = React.useState([]);
     

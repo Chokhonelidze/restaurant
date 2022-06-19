@@ -36,7 +36,6 @@ export function ShowCards(props) {
   export function ExistingCards(props){
     const [user,setUser] = React.useContext(userContext);
     const [dishes,setDishes] = React.useState(props.dishes);
-    console.log(dishes);
     const GET_DISHES = gql`
     query GetDish($input: inputDishes) {
         getDish(input: $input) {
@@ -48,7 +47,7 @@ export function ShowCards(props) {
         }
     }
     `;
-    let { loading, error, data } = useQuery(GET_DISHES,{variables:{"input":{"id":props.id}}});
+    let { loading, error, data } = useQuery(GET_DISHES,{variables:{"input":{}}});
     if (loading) return <p>Loading...</p>;
     if (error) return <p>ERROR</p>;
     if (!data) return <p>Not found</p>;
