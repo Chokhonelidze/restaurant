@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import Head from "next/head";
-import AppContext from "../components/context";
+import {userContext} from "../components/context";
 import Layout from "../components/layout"
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo/apolloClient";
@@ -8,15 +8,11 @@ import "../styles/globals.css";
 
 
 function MyApp(props){
-  var {cart,addItem,removeItem, user, setUser} = useContext(AppContext)
-  const [state,setState] = useState({cart:cart});
+  const [user,setUser] = useState('');
+  const [state,setState] = useState([]);
   const { Component, pageProps } = props;
   
-  
-  setUser = (user) => {
-    setState({ user });
-  };
-  addItem = (item) => {
+  const addItem = (item) => {
     let { items } = state.cart;
     //check for item already in cart
     //if not in cart, add item if item is found increase quanity ++
@@ -59,7 +55,7 @@ function MyApp(props){
     console.log(`state reset to cart:${JSON.stringify(state)}`)
      
   };
-  removeItem = (item) => {
+  const removeItem = (item) => {
     let { items } = state.cart;
     //check for item already in cart
     const foundItem = items.find((i) => i.id === item.id);
@@ -85,7 +81,7 @@ function MyApp(props){
 
   return (
     <ApolloProvider client={client} >
-    <AppContext.Provider value={{cart: state.cart, addItem: addItem, removeItem: removeItem,isAuthenticated:false,user:null,setUser:()=>{}}}>
+    <userContext.Provider value={[user,setUser]}>
       <Head>
         <link
           rel="stylesheet"
@@ -99,7 +95,7 @@ function MyApp(props){
           <Component {...pageProps} />
       </Layout>
 
-    </AppContext.Provider>
+    </userContext.Provider>
     </ApolloProvider>
   );
   

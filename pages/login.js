@@ -1,6 +1,6 @@
 import React from "react";
 import {Card} from "../components/cards";
-import AppContext from "../components/context";
+import {userContext} from "../components/context";
 
 
 var server = process.env.REACT_APP_SERVER
@@ -14,17 +14,13 @@ console.log(process.env)
 
 var API = process.env.API ? process.env.API : "/api";
 function Login(){
-    const appContext = React.useContext(AppContext);
-    const [name,SetName] = React.useState();
-    const [password,setPassword] = React.useState();
-    const [error,setError] = React.useState();
+    const [user,setUser] = React.useContext(userContext);
+    const [email,setEmail] = React.useState('');
+    const [password,setPassword] = React.useState('');
+    const [error,setError] = React.useState('');
 
      async function checkUser(){
-        let params = {
-            name,
-            password
-        };
-        await fetch(loginServer+"/login", {
+        await fetch(loginServer+"/loginEmail", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -34,7 +30,7 @@ function Login(){
               "Origin, X-Requested-With, Content-Type, Accept",
           },
           body: JSON.stringify({
-            name,
+            email,
             password
           }),
         })
@@ -42,8 +38,8 @@ function Login(){
             .then(
               (result) => {
                 if (result && result.accessToken != '') {
-                  appContext.setUser({user:{name},key:{result}});
-                  console.log(appContext.user);
+                  setUser({email:email,role:result.role,key:{result}});
+                  console.log(user);
                   //window.location.href="/"
                 }
                 else{
@@ -57,7 +53,7 @@ function Login(){
             );
     }
     function loginHandle(){
-        if(name && password){
+        if(email && password){
             checkUser();
         }
     }
@@ -72,17 +68,17 @@ function Login(){
             "Origin, X-Requested-With, Content-Type, Accept",
         },
         body: JSON.stringify({
-          "token":appContext.user.key.result.accessToken
+          "token":user.key.result.accessToken
         }),
-      }).then(appContext.setUser(null));
+      }).then(setUser(null));
     }
     return (
         <Card 
         txtcolor="black"
         header="Login"
-        body = {appContext.user ? (
+        body = {user ? (
           <>
-            <h5 className="text-success">Welcome {appContext.user.user.name}</h5>
+            <h5 className="text-success">Welcome {user.email}</h5>
             <button type='subbmit' className="btn btn-primary"  onClick={logout}>logout</button>     
           </>
             
@@ -90,8 +86,8 @@ function Login(){
             <>
             <h5>User:</h5>
             <br/>
-            <input className='form-control' type='text' name='user' placeholder="Username" onChange={(e)=>{
-                SetName(e.target.value);
+            <input className='form-control' type='email' name='email' placeholder="Email" onChange={(e)=>{
+                setEmail(e.target.value);
             }}/>
             <br/>
             <h5>Password:</h5>

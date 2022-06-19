@@ -9,7 +9,7 @@ export const formSettings = {
   "Restaurant Description": {
     min: 10,
     NaN: true,
-    type: "text",
+    type: "textarea",
     label: "Enter Restaurant Description",
     placeholder: "Restaurant Description",
   },

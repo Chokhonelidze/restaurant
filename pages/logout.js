@@ -1,7 +1,7 @@
 
-export default logout(){
+export default async function logout(){
 
-    async function logout(){
+
         await fetch(loginServer+"/logout", {
           method: "POST",
           headers: {
@@ -15,6 +15,6 @@ export default logout(){
             "token":user.key.result.accessToken
           }),
         }).then(setUser(null))
-      }
+      
       return (<></>)
 }

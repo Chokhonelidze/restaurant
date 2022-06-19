@@ -31,7 +31,7 @@ export function validator(field, type) {
       case "name":
         if (field.length <= 2 || field.length > 20) {
           let message = {
-            name: "Bad Name",
+            message: "Bad Name",
           };
           throw message;
         }
@@ -39,7 +39,7 @@ export function validator(field, type) {
       case "email":
         if (field.length < 2 || field.length > 200) {
           let message = {
-            email: "Short Email",
+            message: "Short Email",
           };
           throw message;
         }
@@ -51,7 +51,7 @@ export function validator(field, type) {
             )
         ) {
           let message = {
-            email: "Wrong email",
+            message: "Wrong email",
           };
           throw message;
         }
@@ -59,7 +59,7 @@ export function validator(field, type) {
       case "password":
         if (field.length < 8) {
           let message = {
-            password: "Too short password",
+            message: "Too short password",
           };
           throw message;
         }

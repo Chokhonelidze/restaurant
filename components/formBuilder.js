@@ -12,12 +12,16 @@ import {
   import {formSettings} from "./formHelper";
 
 export function FormBuilder(props){
-    const [errors,setErrors] = React.useState([]);
+  console.log(props);
+
+      const [errors,setErrors] = React.useState([]);
+    
     if(!props)return(<></>);
     let inputs = Object.keys(props).map((item,index)=>{
         let settings = formSettings[item];
         let type = settings.type?settings.type.toLowerCase():'text';
         if(settings && settings.type && (settings.type ==='text'||
+                                        settings.type ==='textarea'||
                                         settings.type === 'url' || 
                                         settings.type ==='number' ||
                                         settings.type ==='checkbox' ||
@@ -28,7 +32,7 @@ export function FormBuilder(props){
         value={props[item][0]} 
         placeholder={settings.placeholder?settings.placeholder:''}
         onChange={(e) => {
-            
+             setErrors([]);
             let error = check(item, e.target.value);
             if (error[item].length) {
                 e.target.classList.remove('is-valid');

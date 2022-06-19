@@ -22,4 +22,39 @@ a {
 }
 .body div {
   margin:5px;
+  display: flex;
+}
+.email {
+  color: darkgreen;
+  font-size: 16px;
+  position: relative;
+  top: 5px;
+}
+
+.bigImg {
+  width:100%
+}
+
+
+.small_card{
+  flex-direction: row;
+  width: 100%;
+  height: 90px;
+  float: left;
+  
+}
+.smalImage {
+  width:60px;
+  height:60px;
+  float:left;
+  margin-left:20px
+}
+.small-card-title {
+  float:left;
+}
+.small-card-body {
+  margin-left: 20px;
+  float: left;
+  display: flex;
+  flex-flow: column;
 }

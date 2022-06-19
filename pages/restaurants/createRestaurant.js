@@ -2,7 +2,10 @@ import { gql, useMutation } from "@apollo/client";
 import React from "react";
 import {FormBuilder} from "../../components/formBuilder";
 import Dish from "../../components/dish";
+import {userContext} from "../../components/context";
 export default function createRestaurant() {
+  const [user,setUser] = React.useContext(userContext);
+  console.log("user = "+user);
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [image, setImage] = React.useState("");
@@ -48,6 +51,7 @@ export default function createRestaurant() {
     "Image":[image,setImage],
     "Create Restaurant":['',submit]
   }
+
   return (
     <>
     <h2>Create New Restaurant</h2>
@@ -62,7 +66,6 @@ export default function createRestaurant() {
       setAddDish(true);
      }}>+ Dish</button>
     }
-   
     </>
   );
 }

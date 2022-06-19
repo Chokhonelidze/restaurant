@@ -4,11 +4,12 @@ import React, { useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { Container, Nav, NavItem } from "reactstrap";
-import AppContext from "./context";
+import {userContext} from "./context";
 
 const Layout = (props) => {
 const title = "Welcome to Nextjs";
-const {user} = useContext(AppContext);
+const [user,setUser] = useContext(userContext);
+console.log(user);
   return (
     <div>
       <Head>
@@ -41,14 +42,15 @@ const {user} = useContext(AppContext);
             </Link>
           </NavItem>
           <NavItem className="ml-auto">
-            {user ? (
-              <h5>{user.name}</h5>
+            {user.email ? (
+                 <p className="email">{user.email}</p>
             ) : (
               <Link href="/register">
                 <a className="nav-link"> Sign up</a>
               </Link>
             )}
           </NavItem>
+
           <NavItem>
             {user ? (
               <Link href="/">
