@@ -1,6 +1,7 @@
 import React from "react";
 import {Card} from "../components/cards";
 import {userContext} from "../components/context";
+import localStorage from "localStorage";
 
 
 var server = process.env.REACT_APP_SERVER
@@ -38,8 +39,11 @@ function Login(){
             .then(
               (result) => {
                 if (result && result.accessToken != '') {
-                  setUser({email:email,role:result.role,key:{result}});
+                  setUser({email:email,role:result.role,user:result.user,key:{result}});
                   //window.location.href="/"
+                 
+                  let token = `${result.user} ${result.accessToken}`;
+                  localStorage.setItem('token',token);
                 }
                 else{
                     setError('Wrong User Or Password!');

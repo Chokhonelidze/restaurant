@@ -1,6 +1,9 @@
-
+import client from "../apollo/apolloClient";
+import localStorage from "localStorage";
 export default async function logout(){
-
+  var loginServer = process.env.REACT_APP_LOGINSERVER
+  ?process.env.REACT_APP_LOGINSERVER
+  :"http://localhost:3001";
 
         await fetch(loginServer+"/logout", {
           method: "POST",
@@ -14,7 +17,12 @@ export default async function logout(){
           body: JSON.stringify({
             "token":user.key.result.accessToken
           }),
-        }).then(setUser(null))
+        }).then(()=>{
+          client.resetStore();
+          client.cache.reset();
+          setUser(null);
+          localStorage.clear();
+        });
       
-      return (<></>)
+      return (<>success</>)
 }

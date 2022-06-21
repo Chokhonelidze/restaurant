@@ -30,7 +30,7 @@ export const formSettings = {
   "Dish Description": {
     min: 10,
     NaN: true,
-    type: "text",
+    type: "textarea",
     label: "Enter Dish Description",
     placeholder: "Dish Description",
   },

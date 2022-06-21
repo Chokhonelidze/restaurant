@@ -14,14 +14,15 @@ export function RestaurantCard(props) {
 }
 export function DishCard(props) {
   return (
-
-      <div className="card" style={{ width: "10rem" }}>
-        <img className="card-img-left" src={props.image} alt="Card image cap" />
+      <div className="card" style={{ width: "16rem" }}>
+        {props.user && props.user.role==='admin'&&props.deleteButton?<button className="deleteButton" id={props.id} onClick={props.deleteButton}>🗑️</button>:''}
+        {props.image?<img className="card-img-left" src={props.image} alt="Card image cap" />:''}
         <div className="card-header">{props.name}</div>
-        <div className="card-body">
+        <div className="card-body" style={{display:"flex",flexDirection:"column"}}>
           <p className="card-text">{props.description}</p>
-          {props.price?<p className="card-text price">{props.price}</p>:''}
+          {props.price?<p className="card-text price">Price : {props.price}$</p>:''}
         </div>
+        {props.addItemToCart?<button className="addItemToCart" value={props.price} id={props.id} onClick={props.addItemToCart}>Add To Cart</button>:''}
       </div>
   
   );

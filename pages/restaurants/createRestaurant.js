@@ -1,15 +1,13 @@
 import { gql, useMutation } from "@apollo/client";
 import React from "react";
 import {FormBuilder} from "../../components/formBuilder";
-import Dish from "../../components/dish";
 import {userContext} from "../../components/context";
 export default function createRestaurant() {
   const [user,setUser] = React.useContext(userContext);
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [image, setImage] = React.useState("");
-  const [dishes, setDishes] = React.useState([]);
-  const [addDish,setAddDish] = React.useState(false);
+
   const CREATE_RESTAURANT = gql`
     mutation CreateRestaurant($input: createRestaurant) {
       createRestaurant(input: $input) {
@@ -31,13 +29,14 @@ export default function createRestaurant() {
   }
 
   async function createForm() {
+    let header = "";
     let response = await createRestaurant({
       variables: {
         input: {
           name: name,
           description: description,
           image: image,
-        },
+        }
       },
     });
     if (response.data.createRestaurant) {
@@ -54,16 +53,6 @@ export default function createRestaurant() {
     <>
     <h2>Create New Restaurant</h2>
     <FormBuilder {...formBuilderData} />
-    {addDish?
-     <Dish  handleDish={(id)=>{
-       setAddDish(false);
-       setDishes([...dishes,id]);
-     }}/>
-     :
-     <button onClick={()=>{
-      setAddDish(true);
-     }}>+ Dish</button>
-    }
     </>
   );
 }
