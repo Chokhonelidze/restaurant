@@ -65,7 +65,7 @@ export default function register() {
                 .then((response) => response.json())
                 .then((result) => {
                   if (result) {
-                    setUser({ email: email, role: result.role, key: { result } });
+                    setUser({ email: email, user:result.user, role: result.role, key: { result } });
                   } else {
                     setError("Wrong User Or Password!");
                   }

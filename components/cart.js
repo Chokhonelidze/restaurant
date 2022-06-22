@@ -34,8 +34,10 @@ export default function Cart(){
             setCart(newCart);
         }
     }
+    let dishes = [];
     let content =  Object.keys(cart).map((key,index)=>{
         if(key !== 'total'){
+            dishes.push(key);
            return <CartItem key={index+"cardItem"} id={key} count={cart[key].count}  addItem={addItem} removeItem={removeItem}/>
         }
         else{
@@ -65,7 +67,7 @@ export default function Cart(){
             setPopup(true);
         }} > Checkout </button>
     </div>
-    {showPopup?<Popup total={total} close={closePopup} reset={rest} />:''}
+    {showPopup?<Popup total={total} close={closePopup} reset={rest} dishes={dishes} />:''}
     </div>);
 
 }
