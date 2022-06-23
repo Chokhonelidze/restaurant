@@ -1,5 +1,7 @@
 FROM node:slim
 
+ENV PORT 5000
+
 WORKDIR /app
 
 COPY package.json /app/package.json
@@ -10,4 +12,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["npm run","dev"]
+CMD "npm" "run" "dev"
