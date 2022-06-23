@@ -5,9 +5,10 @@ import { userContext } from "./context";
 
 export default function Popup(props) {
 
-  const [payments, setPayment] = React.useState("local");
+  const [payments, setPayment] = React.useState("");
   const [user, setUser] = React.useContext(userContext);
   const [status, setStatus] = React.useState("");
+
   return (
     <div className="popup">
       <div className="popup_open">
@@ -18,7 +19,13 @@ export default function Popup(props) {
           <h2>Total : {props.total}$</h2>
         </div>
         <div className="paymentBody">
-          {payments && payments == "local" ? (
+          {payments == ''?
+          <>
+          {user?<><Button color="primary" onClick={()=>{setPayment('local')}}>Pay From BadBank</Button><br></br></>:''}
+          <Button color="primary" onClick={()=>{setPayment('stripe')}}>Card Payment</Button>
+          </>:""
+          }
+          {payments && payments === "local" ? (
             <LocalPayments
               user={user.user}
               total={props.total}
@@ -28,6 +35,7 @@ export default function Popup(props) {
           ) : (
             ""
           )}
+          {payments && payments === 'stripe'?<h1>stripe</h1>:''}
         </div>
         <div className="users"></div>
         <div className="statusMessage text-success">{status ? <h4>{status}</h4> : ""}</div>
