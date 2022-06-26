@@ -96,7 +96,7 @@ function LocalPayments(props) {
   if (Number(props.total) > Number(data.getAccount.deposit)) {
     return (
       <h5 className="text-warning">
-        Your Balance is: {data.getAccount.deposit}$ you can't pay
+        Your Balance is: {data.getAccount.deposit}$ you can not pay
       </h5>
     );
   } else {

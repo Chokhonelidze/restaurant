@@ -2,7 +2,7 @@ import React from "react";
 export function RestaurantCard(props) {
   return (
    
-      <div className="card" style={{ width: "18rem" }}>
+      <div className="card restaurantCard" style={{ width: "18rem" }}>
         <img className="card-img-top" src={props.image} alt="Card image cap" />
         <div className="card-header">{props.name}</div>
         <div className="card-body">
@@ -14,7 +14,7 @@ export function RestaurantCard(props) {
 }
 export function DishCard(props) {
   return (
-      <div className="card" style={{ width: "16rem" }}>
+      <div className={props.class?"card"+props.class:"card dishesCard"} style={{ width: "16rem" }}>
         {props.user && props.user.role==='admin'&&props.deleteButton?<button className="deleteButton" id={props.id} onClick={props.deleteButton}>🗑️</button>:''}
         {props.image?<img className="card-img-left" src={props.image} alt="Card image cap" />:''}
         <div className="card-header">{props.name}</div>

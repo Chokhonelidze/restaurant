@@ -40,6 +40,7 @@ export default function createRestaurant() {
       },
     });
     if (response.data.createRestaurant) {
+      window.location.href = '/';
     }
   }
   let formBuilderData = {

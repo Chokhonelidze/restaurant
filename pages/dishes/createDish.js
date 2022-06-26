@@ -1,4 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
+import { useRouter,Router } from "next/router";
 import React from "react";
 import { FormBuilder } from "../../components/formBuilder";
 import { userContext } from "../../components/context";
@@ -9,7 +10,15 @@ export default function createDish() {
   const [price, setPrice] = React.useState("");
   const [image, setImage] = React.useState("");
   const [status,setStatus] = React.useState("");
-
+  React.useEffect(()=>{
+    if(!user){
+      let ref=()=>{
+        console.log("here")
+        window.location.href = '/';
+      }
+      ref();
+    }
+  },[]);
   const CREATE_DISH = gql`
     mutation Mutation($input: createDish) {
       createDish(input: $input) {
@@ -44,14 +53,7 @@ export default function createDish() {
     }
   };
 
-  async function createForm() {
-    console.log(user);
-    let header = "";
-    if (user) {
-      header = `${user.email} ${user.key.result.accessToken}`;
-      console.log(header);
-    }
-  }
+
   let formBuilderData = {
     "Dish Name": [name, setName],
     "Dish Description": [description, setDescription],

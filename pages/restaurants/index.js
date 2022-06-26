@@ -19,10 +19,13 @@ export default function Restaurant({ search }) {
       }
     }
   `;
-  let { loading, error, data } = useQuery(GET_RESTAURANTS, {
-    variables: { input: { search: search, limit: 200 } },
-  });
 
+  let { loading, error, data, refetch } = useQuery(GET_RESTAURANTS, {
+    variables: { input: { search: search, limit: 200 } }
+  });
+  React.useEffect(()=>{
+    refetch=true;
+  },[]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>ERROR</p>;
   if (!data) return <p>Not found</p>;
@@ -45,8 +48,9 @@ export default function Restaurant({ search }) {
     );
   });
   return (
-    <div key="restaurantsMain">
+    <>
       {restaurants}
-    </div>
+    </>
+   
   );
 }

@@ -27,9 +27,12 @@ export default function Restaurant() {
       }
     }
   `;
-  const { loading, error, data } = useQuery(query, {
+  let { loading, error, data, refresh} = useQuery(query, {
     variables: { input: { id: router.query.restaurant } },
   });
+  React.useEffect(()=>{
+    refresh = true;
+  },[]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>ERROR</p>;
   if (!data) return <p>Not found</p>;

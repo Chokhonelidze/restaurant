@@ -59,7 +59,7 @@ export default function Cart(){
     </div>
     <div>
         <h4>
-        total : {total}
+        total : {total+"$"}
         </h4>
     </div>
     <div>
@@ -90,6 +90,6 @@ function CartItem(props) {
   if (error) return <p>ERROR</p>;
   if (!data) return <p>Not found</p>;
 
-  return <div style={{padding:"5px"}}><DishCard {...data.getDish[0]} /><button value={props.id} onClick={props.addItem}>+</button><button value={props.id} onClick={props.removeItem}>-</button> {props.count}</div>
+  return <div style={{padding:"5px"}}><DishCard class={'shopping'} {...data.getDish[0]} /><button value={props.id} onClick={props.addItem}>+</button><button value={props.id} onClick={props.removeItem}>-</button> {props.count}</div>
 }
  

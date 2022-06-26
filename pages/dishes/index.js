@@ -1,6 +1,6 @@
 
 import { DishCard } from "../../components/cards";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 import { InputGroup,Input, Button } from "reactstrap";
@@ -48,8 +48,11 @@ export default function dishes(){
           newcart.total = total(newcart);
           setCart(newcart);
         };
-        let { loading, error, data } = useQuery(GET_DISHES,{variables:{"input":{"search":search,"limit":limit,"offset":offset}}});
-    
+        let { loading, error, data, refresh } = useQuery(GET_DISHES,{variables:{"input":{"search":search,"limit":limit,"offset":offset}}});
+
+        React.useEffect(()=>{
+          refresh=true;
+        },[]);
         if (loading) return <p>Loading...</p>;
         if (error) return <p>ERROR</p>;
         if (!data) return <p>Not found</p>;
