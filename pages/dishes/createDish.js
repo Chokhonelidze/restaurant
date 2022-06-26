@@ -1,16 +1,16 @@
 import { gql, useMutation } from "@apollo/client";
 import { useRouter,Router } from "next/router";
-import React from "react";
+import {useContext,useState, useEffect} from "react";
 import { FormBuilder } from "../../components/formBuilder";
 import { userContext } from "../../components/context";
 export default function createDish() {
-  const [user, setUser] = React.useContext(userContext);
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [price, setPrice] = React.useState("");
-  const [image, setImage] = React.useState("");
-  const [status,setStatus] = React.useState("");
-  React.useEffect(()=>{
+  const [user, setUser] = useContext(userContext);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [status,setStatus] = useState("");
+  useEffect(()=>{
     if(!user){
       let ref=()=>{
         console.log("here")
